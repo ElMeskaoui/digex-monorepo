@@ -1,0 +1,30 @@
+{
+  "name": "manage-letters-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/manage-letters-e2e/src",
+  "targets": {
+    "e2e": {
+      "executor": "@nx/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/manage-letters-e2e/cypress.config.ts",
+        "testingType": "e2e",
+        "devServerTarget": "manage-letters:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "manage-letters:serve:production"
+        },
+        "ci": {
+          "devServerTarget": "manage-letters:serve-static"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint",
+      "outputs": ["{options.outputFile}"]
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["manage-letters"]
+}
